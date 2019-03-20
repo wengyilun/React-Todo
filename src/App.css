@@ -1,0 +1,25 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    position: relative;
+    font-size: 62.5%;
+    line-height: 1.25rem;
+    margin: 0;
+    padding: 2rem;
+}
+
+h1{
+    margin: 0;
+}
+
+.wrapper-container{
+    border: 1px solid #222;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.15);
+    padding: 1rem;
+    border-radius: 4px;
+    background-color:#1fc8db;
+    background:  #888;
+}
