@@ -1,0 +1,105 @@
+
+.todoList{
+    padding-left: 0;
+}
+
+.todoItem{
+    display:flex;
+    position: relative;
+    border: 1px solid black;
+    padding: 20px;
+    background:  #333;
+    color:#eee;
+    margin-bottom: 8px;
+    border-radius: 6px;
+}
+
+.todoItem h1{
+    margin-left: 60px;
+}
+
+.todo-completed{
+    text-decoration: line-through;
+}
+
+.closeButton{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    margin: auto 0;
+    background-color:mediumaquamarine;
+    outline:none;
+    transition: all 0.3s ease;
+}
+
+.closeButton:after{
+    content: '✖';
+    font-size: 1rem;
+}
+
+.closeButton:hover {
+    color:mediumaquamarine;
+    background-color:rgba(255, 255, 255, 0.8);
+}
+
+
+
+.completedCheckbox{
+    width: 20px;
+    height: 20px;
+    /*-webkit-appearance: none;*/
+    /*-moz-appearance:none;*/
+    border:none;
+    margin: auto 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-right: 1px dotted #444;
+    outline: none;
+    /*background-color:mediumaquamarine;*/
+}
+
+/*.completedCheckbox:after{*/
+    /*content: '✔';*/
+    /*line-height: 43px;*/
+    /*font-size: 20px;*/
+    /*color:#d9d9d9;*/
+    /*text-shadow:0 -1px 0 #bfbfbf;*/
+/*}*/
+
+.todoForm{
+    width: 100%;
+    display:flex;
+    justify-content: flex-start;
+}
+
+.todoForm > *{
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+.todoListContainer{
+}
+
+input{
+    border-radius: 4px;
+    padding: 10px 20px;
+}
+
+button{
+    margin: 0;
+    border-radius: 4px;
+    padding: 10px 20px;
+    flex-basis: 200px;
+    background-color: powderblue;
+    color: #333;
+    border: 1px solid #444;
+    transition: all 0.3s ease-in-out;
+}
+button:hover{
+    color:powderblue;
+    background-color:#eee;
+}
