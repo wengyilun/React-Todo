@@ -26,21 +26,11 @@ class App extends React.Component {
 		}
 	}
 	
-	
-	getIdToShelfMap = () => {
-		let todoMap = new Map()
-		for (let todo of this.state.todoList) {
-			todoMap.set(todo.id, todo)
-		}
-		return todoMap
-  }
-
   updateTodoTask = event =>{
   	this.setState({
   		'task': event.target.value
   	})
-}
-	
+  }
   addTodo = event =>{
   	if(event) event.preventDefault();
   	if(!this.state.task) return;
@@ -56,6 +46,7 @@ class App extends React.Component {
   	})
 	
 	localStorage.setItem('todoList', JSON.stringify(newList))
+  
   }
 	
   clearTodoTask = event =>{
@@ -127,32 +118,31 @@ class App extends React.Component {
 		})
 	}
 	
-	
 	updateSearchQuery = (queryStr)=>{
 		this.search(queryStr)
 	}
 	
 	render() {
-    return (
-      <div className="wrapper-container" >
-        <h2 className="app-title">Add your programming tasks</h2>
-        <Search
-        	onSearch={this.search}
-			clearSearch={this.clearSearch}
-        	updateSearchQuery={this.updateSearchQuery}/>
-        <TodoList
-        	todoList={this.state.todoList}
-			onToggleComppleted={this.toggleCompleted}
-			onDeleteTodoClick={this.deleteTodo}/>
-		<TodoForm
-			onInputChange={this.updateTodoTask}
-			onAddButtonClick={this.addTodo}
-			onClearButtonClick={this.clearTodoTask}
-			onKeyPress={this.handleKeyPress}
-			onClearCompleted={this.clearCompleted}
-			task={this.state.task}/>
-      </div>
-    );
+		return (
+		  <div className="wrapper-container" >
+			<h2 className="app-title">Add your programming tasks</h2>
+			<Search
+				onSearch={this.search}
+				clearSearch={this.clearSearch}
+				updateSearchQuery={this.updateSearchQuery}/>
+			<TodoList
+				todoList={this.state.todoList}
+				onToggleComppleted={this.toggleCompleted}
+				onDeleteTodoClick={this.deleteTodo}/>
+			<TodoForm
+				onInputChange={this.updateTodoTask}
+				onAddButtonClick={this.addTodo}
+				onClearButtonClick={this.clearTodoTask}
+				onKeyPress={this.handleKeyPress}
+				onClearCompleted={this.clearCompleted}
+				task={this.state.task}/>
+		  </div>
+		);
   }
 }
 

@@ -17,9 +17,6 @@ const TodoForm = (props)=>{
 			<button
 				className="clearBtn"
 				onClick={props.onClearButtonClick}>Clear</button>
-			<button
-				className="clearBtn"
-				onClick={props.onClearCompleted}>Clear Completed</button>
 		</form>
 	)
 }
