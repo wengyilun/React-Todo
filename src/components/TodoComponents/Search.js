@@ -19,21 +19,14 @@ class Search extends React.Component {
 		console.log('onChange', val)
 	}
 	
-	handleSearch = ()=>{
-		this.props.onSearch(this.state.queryStr);
-	}
-	
 	clearSearch = (e)=>{
-		this.setState({queryStr: ''})
-		this.props.clearSearch(e)
-		//this.props.updateSearchQuery(e, '')
+		this.props.updateSearchQuery('')
 	}
 	
 	render(){
 		return(
 			<div className="search-container">
 				<input type="text" className="searchInput" onChange={(e)=> this.updateSearchQuery(e.target.value)}/>
-				<button className="searchButton" onClick={this.handleSearch}>Search</button>
 				<button className="clearSearchButton" onClick={(e)=> this.clearSearch(e)}>Clear</button>
 			</div>
 		)

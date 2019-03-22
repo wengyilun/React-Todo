@@ -2,6 +2,10 @@ import React from 'react';
 import TodoList from './components/TodoComponents/TodoList'
 import TodoForm from './components/TodoComponents/TodoForm'
 import Search from './components/TodoComponents/Search'
+import escapeRegExp from 'escape-string-regexp'
+import sortBy from 'sort-by'
+
+
 import './App.css';
 
 class App extends React.Component {
@@ -15,7 +19,20 @@ class App extends React.Component {
 		  task:'',
 		  completed:false,
 		  todoMap: new Map(),
-		  todoList: []
+		  query:'',
+		  todoList: [
+			{
+				task: 'Organize Garage',
+				id: 1528817077286,
+				completed: false
+			},
+			{
+				task: 'Bake Cookies',
+				id: 1528817084358,
+				completed: false
+			}
+		 ]
+		 // todoList: []
     }
   }
 	
@@ -31,6 +48,7 @@ class App extends React.Component {
   		'task': event.target.value
   	})
   }
+  
   addTodo = event =>{
   	if(event) event.preventDefault();
   	if(!this.state.task) return;
@@ -96,42 +114,32 @@ class App extends React.Component {
 	  this.setState({
 		  todoList:clonedArr
 	  })
-	 localStorage.setItem('todoList', JSON.stringify(clonedArr))
-	}
-	
-	search = (queryStr)=>{
-		let clonedArr = [...this.state.todoList]
-		clonedArr = clonedArr.filter(el => {
-			if(el.task.indexOf(queryStr)!==-1){
-				return el
-			}
-		})
-		this.setState({
-			todoList:clonedArr
-		})
-	}
-	
-	clearSearch = (event)=>{
-		let clonedArr = [...this.state.todoList]
-		this.setState({
-			todoList:clonedArr
-		})
 	}
 	
 	updateSearchQuery = (queryStr)=>{
-		this.search(queryStr)
+		this.setState({query : queryStr})
 	}
 	
 	render() {
+		let showingTodos
+		
+		if (this.state.query){
+			const match = new RegExp(escapeRegExp(this.state.query), 'i')
+			showingTodos = this.state.todoList.filter((todo) => match.test(todo.task))
+		}else{
+			showingTodos = this.state.todoList
+		}
+		
+		showingTodos.sort(sortBy('task'))
+	
 		return (
 		  <div className="wrapper-container" >
 			<h2 className="app-title">Add your programming tasks</h2>
 			<Search
-				onSearch={this.search}
 				clearSearch={this.clearSearch}
 				updateSearchQuery={this.updateSearchQuery}/>
 			<TodoList
-				todoList={this.state.todoList}
+				todoList={showingTodos}
 				onToggleComppleted={this.toggleCompleted}
 				onDeleteTodoClick={this.deleteTodo}/>
 			<TodoForm
